@@ -1,7 +1,7 @@
 <template>
     <div class="listNotes">
         <ul>
-            <li v-for="(row, index) in propNotes" :key="index">
+            <li v-for="(row, index) in notes" :key="index">
                <button class="btn-note" @click="idNote(row.id)">
                     <label for="">{{ row.title }}</label>
                     <span>{{ row.description }}</span>
@@ -12,10 +12,15 @@
 </template>
 
 <script type="text/javascript">
+import axios from 'axios';
+
 export default{
     name: 'listNotes',
     data: function(){
         return{
+            notes: [
+                
+            ]
         }
     },
     props: {
@@ -29,7 +34,15 @@ export default{
     methods:{
         idNote(id){
             this.propEditNote(id)
+        },
+        getData(){
+        axios.get('http://localhost/wegodev/laravelvue_notes/note').then(result => {
+            this.notes = result.data;
+        })
         }
+    },
+    mounted(){
+        this.getData();
     }
 }
 </script>

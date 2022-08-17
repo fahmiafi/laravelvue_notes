@@ -9,7 +9,7 @@
       </div>
       <div class="frame-notes">
         <button @click="newNote" class="bg-success btn-new-note">+ Note Baru</button>
-        <ListNotes :propNotes="notes" :propEditNote="editNote"/>
+        <ListNotes :propEditNote="editNote"/>
       </div>
     </div>
     <div class="kanan">
@@ -28,9 +28,6 @@ export default {
   data: function(){
       return{
         dataForm: {},
-        notes: [
-            
-        ]
       }
   },
   components: {
