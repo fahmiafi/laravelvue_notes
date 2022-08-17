@@ -39,7 +39,7 @@ export default {
   },
   methods:{
     newNote(){
-      this.dataForm = {id: 0, title: '', description: ''}
+      this.dataForm = {id: 0, title: '', description: '', mode: 'save'}
     },
     saveNote(title, description){
       let newId = 0;
@@ -54,9 +54,8 @@ export default {
       this.editNote(newId);
     },
     editNote(id){
-      // console.log('app vue'+id);
-      this.dataForm = this.notes.find(note => note.id === id)
-      // console.log(this.dataForm);
+      this.dataForm = this.notes.find(note => note.id === id);
+      this.dataForm.mode = 'update';
     },
     updateNote(id, title, description){
       let noteIndex = this.notes.findIndex(note => note.id === id)
