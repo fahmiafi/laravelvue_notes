@@ -22,9 +22,6 @@
             propSaveNote: {
                 type: Function
             },
-            propDataForm: {
-                type: Object
-            },
             propUpdateNote: {
                 type: Function
             },
@@ -59,12 +56,12 @@
                 this.resetInput();
             }
         },
-        watch:{
-            propDataForm: function(note){
-                this.id = note.id;
-                this.title = note.title;
-                this.description = note.description;
-            }
+        mounted(){
+            this.$root.$on('emitForm', data => {
+                this.id = data.id;
+                this.title = data.title;
+                this.description = data.description;
+            })
         }
     }
 </script>

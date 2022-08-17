@@ -9,11 +9,11 @@
       </div>
       <div class="frame-notes">
         <button @click="newNote" class="bg-success btn-new-note">+ Note Baru</button>
-        <ListNotes :propNotes="notes" :propEditNote="editNote"/>
+        <ListNotes :propEditNote="editNote"/>
       </div>
     </div>
     <div class="kanan">
-      <FormNotes :propSaveNote="saveNote" :propDataForm="dataForm" :propUpdateNote="updateNote" :propRemoveNote="removeNote"/>
+      <FormNotes :propSaveNote="saveNote" :propUpdateNote="updateNote" :propRemoveNote="removeNote"/>
     </div>
   </div>
 </template>
@@ -27,10 +27,6 @@ export default {
   name: 'App',
   data: function(){
       return{
-        dataForm: {},
-        notes: [
-            
-        ]
       }
   },
   components: {
@@ -52,11 +48,6 @@ export default {
       let newNote = {'id': newId, 'title' : title, 'description': description}
       this.notes.push(newNote);
       this.editNote(newId);
-    },
-    editNote(id){
-      // console.log('app vue'+id);
-      this.dataForm = this.notes.find(note => note.id === id)
-      // console.log(this.dataForm);
     },
     updateNote(id, title, description){
       let noteIndex = this.notes.findIndex(note => note.id === id)
