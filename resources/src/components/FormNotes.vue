@@ -20,6 +20,12 @@
     export default{
         name: 'formNotes',
         props: {
+            propSaveNote: {
+                type: Function
+            },
+            propDataForm: {
+                type: Object
+            },
             propUpdateNote: {
                 type: Function
             },
@@ -32,27 +38,23 @@
                 id: 0,
                 title: '',
                 description: '',
-                mode: 'save',
+                mode: 'save'
             }
         },
         methods:{
-            submitNote(e){
-                e.preventDefault();
-
-                if(this.id === 0){
-                    this.propSaveNote(this.title, this.description);
-                }else{
-                    this.propUpdateNote(this.id, this.title, this.description)
-                }
-            }, 
+            submitSave(){
+                this.propSaveNote(this.title, this.description);
+            },
+            submitUpdate(){
+                this.propUpdateNote(this.id, this.title, this.description)
+            },
             resetInput(){
                 this.id= 0;
                 this.title= '';
                 this.description= '';
             },
             submitRemove(){
-                let data = {id: this.id}
-                this.$root.$emit('emitRemoveNote', data)
+                this.propRemoveNote(this.id);
                 this.resetInput();
             }
         },
@@ -61,6 +63,7 @@
                 this.id = note.id;
                 this.title = note.title;
                 this.description = note.description;
+                this.mode = note.mode;
             }
         }
     }
