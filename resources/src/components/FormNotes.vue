@@ -52,12 +52,13 @@
                 this.description= '';
             },
             submitRemove(){
-                this.propRemoveNote(this.id);
+                let data = {id: this.id}
+                this.$root.$emit('emitRemoveNote', data)
                 this.resetInput();
             }
         },
         mounted(){
-            this.$root.$on('emitForm', data => {
+            this.$root.$options('emitForm', data => {
                 this.id = data.id;
                 this.title = data.title;
                 this.description = data.description;
